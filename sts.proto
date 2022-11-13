@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package sts;
+
+option go_package='./pb';
+
+message GetUserCosStsReq {
+  string userId = 1;
+  string path = 2;
+}
+
+message GetUserCosStsResp {
+  string secretId = 1;
+  string secretKey = 2;
+  string sessionToken = 3;
+}
+
+service Sts {
+  rpc getUserCosSts(GetUserCosStsReq) returns (GetUserCosStsResp);
+}
