@@ -11,7 +11,7 @@ import (
 	sts "github.com/tencentyun/qcloud-cos-sts-sdk/go"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/xh-polaris/sts-rpc/internal/errorx"
+	"github.com/xh-polaris/sts-rpc/errorx"
 	"github.com/xh-polaris/sts-rpc/internal/svc"
 	"github.com/xh-polaris/sts-rpc/pb"
 )

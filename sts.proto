@@ -15,6 +15,6 @@ message GetUserCosStsResp {
   string sessionToken = 3;
 }
 
-service Sts {
+service sts_rpc {
   rpc getUserCosSts(GetUserCosStsReq) returns (GetUserCosStsResp);
 }

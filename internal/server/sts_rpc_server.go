@@ -11,18 +11,18 @@ import (
 	"github.com/xh-polaris/sts-rpc/pb"
 )
 
-type StsServer struct {
+type StsRpcServer struct {
 	svcCtx *svc.ServiceContext
-	pb.UnimplementedStsServer
+	pb.UnimplementedStsRpcServer
 }
 
-func NewStsServer(svcCtx *svc.ServiceContext) *StsServer {
-	return &StsServer{
+func NewStsRpcServer(svcCtx *svc.ServiceContext) *StsRpcServer {
+	return &StsRpcServer{
 		svcCtx: svcCtx,
 	}
 }
 
-func (s *StsServer) GetUserCosSts(ctx context.Context, in *pb.GetUserCosStsReq) (*pb.GetUserCosStsResp, error) {
+func (s *StsRpcServer) GetUserCosSts(ctx context.Context, in *pb.GetUserCosStsReq) (*pb.GetUserCosStsResp, error) {
 	l := logic.NewGetUserCosStsLogic(ctx, s.svcCtx)
 	return l.GetUserCosSts(in)
 }
