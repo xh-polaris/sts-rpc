@@ -15,7 +15,7 @@ ADD go.sum .
 RUN go mod download
 COPY . .
 COPY ./etc /app/etc
-RUN go build -ldflags="-s -w" -o /app/cos-demo .
+RUN go build -ldflags="-s -w" -o /app/sts-rpc .
 
 
 FROM scratch
@@ -25,7 +25,7 @@ COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/S
 ENV TZ Asia/Shanghai
 
 WORKDIR /app
-COPY --from=builder /app/cos-demo /app/cos-demo
+COPY --from=builder /app/sts-rpc /app/sts-rpc
 COPY --from=builder /app/etc /app/etc
 
-CMD ["./cos-demo", "-f", "etc/sts.yaml"]
+CMD ["./sts-rpc", "-f", "etc/sts.yaml"]
