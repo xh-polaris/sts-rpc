@@ -6,8 +6,6 @@ import (
 
 	"time"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promauto"
 	sts "github.com/tencentyun/qcloud-cos-sts-sdk/go"
 	"github.com/zeromicro/go-zero/core/logx"
 
@@ -21,14 +19,6 @@ type GetUserCosStsLogic struct {
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
-
-var (
-	userRequestTotal = promauto.NewCounterVec(prometheus.CounterOpts{
-		Namespace: "rpc_server_logic",
-		Subsystem: "get_user_cos_sts",
-		Name:      "user_requests_total",
-	}, []string{"userId"})
-)
 
 func NewGetUserCosStsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetUserCosStsLogic {
 	return &GetUserCosStsLogic{
@@ -78,12 +68,6 @@ func (l *GetUserCosStsLogic) GetUserCosSts(in *pb.GetUserCosStsReq) (*pb.GetUser
 	if err != nil {
 		return nil, err
 	}
-
-	counter, err := userRequestTotal.GetMetricWith(map[string]string{"userId": in.UserId})
-	if err != nil {
-		return nil, err
-	}
-	counter.Inc()
 
 	return &pb.GetUserCosStsResp{
 		SecretId:     res.Credentials.TmpSecretID,
