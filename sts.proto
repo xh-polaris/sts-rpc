@@ -13,6 +13,8 @@ message GetUserCosStsResp {
   string secretId = 1;
   string secretKey = 2;
   string sessionToken = 3;
+  int64 expiredTime = 4;
+  int64 startTime = 5;
 }
 
 service sts_rpc {

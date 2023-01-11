@@ -73,5 +73,7 @@ func (l *GetUserCosStsLogic) GetUserCosSts(in *pb.GetUserCosStsReq) (*pb.GetUser
 		SecretId:     res.Credentials.TmpSecretID,
 		SecretKey:    res.Credentials.TmpSecretKey,
 		SessionToken: res.Credentials.SessionToken,
+		ExpiredTime:  int64(res.ExpiredTime),
+		StartTime:    int64(res.StartTime),
 	}, nil
 }
